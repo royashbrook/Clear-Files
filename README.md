@@ -30,7 +30,7 @@ the caller must use a consistent calendar convention. Default mode is not change
 
 Missing, short, malformed, invalid and future dates stay untouched. There is no fallback to
 filesystem age. Directories are excluded in filename mode. Unsupported formats and missing,
-negative or nonnumeric `keepdays` fail before deletion. Choose prefixes that represent the
+blank, negative or nonnumeric `keepdays` fail before deletion. Choose prefixes that represent the
 artifact age you intend to retain, not an unrelated source-event date.
 
 Run the disposable-directory regression checks with `pwsh -NoProfile -File tests/retention.ps1`.

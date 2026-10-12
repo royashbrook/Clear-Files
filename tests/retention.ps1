@@ -54,6 +54,10 @@ try {
     Assert (!(Test-Path 20000101153000-time.log)) 'time suffix ignored'
     Assert ((Test-Path x20000101.log) -and (Test-Path 2000.log)) 'prefix only and short retained'
 
+    $null = New-Item -ItemType File 20000101-empty.log
+    $null = Clear-Files ([pscustomobject]@{keepdays=2; purgefiles='20000101-empty.log'}) -FilenameDateFormat yyyyMMdd
+    Assert (!(Test-Path 20000101-empty.log)) 'single zero-byte expired file removed'
+
     $zero = [pscustomobject]@{ keepdays=0; purgefiles='*.log' }
     $current = $today.ToString('yyyyMMdd') + '-today.log'
     File $current 90
@@ -66,6 +70,8 @@ try {
         @{format='yyyyMM'; days=2},
         @{format='yyyyMMdd'; days=-1},
         @{format='yyyyMMdd'; days=$null},
+        @{format='yyyyMMdd'; days=''},
+        @{format='yyyyMMdd'; days=' '},
         @{format='yyyyMMdd'; days='invalid'}
     )){
         File 20000101.log
