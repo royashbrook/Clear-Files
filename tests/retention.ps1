@@ -160,6 +160,8 @@ try {
         @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern='('},
         @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern='[0-9]{8}'},
         @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern='(?<day>[0-9]{8})'},
+        @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern='(?<Date>[0-9]{8})'},
+        @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern='(?<DATE>[0-9]{8})'},
         @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern=''},
         @{FilenameDateFormat='yyyyMMdd'; FilenameDatePattern=$null},
         @{FilenameDateFormat='yyyyMM'; FilenameDatePattern='(?<date>[0-9]{8})'}

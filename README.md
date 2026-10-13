@@ -48,7 +48,7 @@ Clear-Files $cfg -FilenameDateFormat yyyyMMdd -FilenameDatePattern '^invoice-(?<
 Clear-Files $cfg -FilenameDateFormat yyyy-MM-dd -FilenameDatePattern '^Report(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2})\.xlsx$'
 ```
 
-The pattern is a regex over the filename only, not its path. Name the day capture `date`.
+The pattern is a regex over the filename only, not its path. Name the day capture exactly `date` (case-sensitive).
 It must match exactly once and capture `date` exactly once. No match, multiple matches,
 repeated captures, missing dates and invalid dates keep the file. The capture must have the
 format's exact width. A pattern does not change `purgefiles`, the cutoff, or the no-fallback rule.

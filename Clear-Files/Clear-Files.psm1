@@ -10,12 +10,11 @@ function Clear-Files {
         if(!$FilenameDateFormat){ throw 'FilenameDatePattern requires FilenameDateFormat.' }
         $pattern = [regex]::new($FilenameDatePattern, [Text.RegularExpressions.RegexOptions]::CultureInvariant,
             [timespan]::FromSeconds(1))
-        if('date' -notin $pattern.GetGroupNames()){ throw 'FilenameDatePattern requires a named date capture.' }
+        if('date' -cnotin $pattern.GetGroupNames()){ throw 'FilenameDatePattern requires a named date capture.' }
     }
     $pf = $cfg.purgefiles -split ","
     $pd = (Get-Date).AddDays(-[int]($cfg.keepdays))
     if($FilenameDateFormat){
-        $ErrorActionPreference = 'Stop'
         if([string]::IsNullOrWhiteSpace([string]$cfg.keepdays) -or [int]$cfg.keepdays -lt 0){
             throw 'Filename-date retention requires nonnegative keepdays.'
         }
@@ -38,7 +37,7 @@ function Clear-Files {
             $date = [datetime]::MinValue
             [datetime]::TryParseExact($text, $format, [cultureinfo]::InvariantCulture,
                 [Globalization.DateTimeStyles]::None, [ref]$date) -and $date -lt $pd
-        })
+        } -ErrorAction Stop)
     }else{
         $ff = Get-ChildItem .\* -Include $pf | Where-Object LastWriteTime -lt $pd
     }
