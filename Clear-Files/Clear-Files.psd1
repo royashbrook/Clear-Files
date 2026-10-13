@@ -1,6 +1,6 @@
 @{
     RootModule = 'Clear-Files.psm1'
-    ModuleVersion = '1.1.0.0'
+    ModuleVersion = '1.2.0.0'
     GUID = '695d397b-bbbc-4f23-bc20-f46507937cec'
     Author = 'Roy Ashbrook'
     CompanyName = 'ashbrook.io'
